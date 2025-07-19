@@ -1,32 +1,104 @@
-# If you prefer the allow list template instead of the deny list, see community template:
-# https://github.com/github/gitignore/blob/main/community/Golang/Go.AllowList.gitignore
-#
-# Binaries for programs and plugins
-*.exe
-*.exe~
-*.dll
-*.so
-*.dylib
+#############################################
+# GLOBAL IGNORE (Monorepo: Go + Next.js)
+#############################################
 
-# Test binary, built with `go test -c`
-*.test
+### OS / Editor junk
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+.idea/
+.vscode/*
+!.vscode/settings.json
+!.vscode/extensions.json
 
-# Code coverage profiles and other test artifacts
-*.out
-coverage.*
-*.coverprofile
-profile.cov
-
-# Dependency directories (remove the comment below to include it)
-# vendor/
-
-# Go workspace file
-go.work
-go.work.sum
-
-# env file
+#############################################
+# ENV / Secrets (jangan commit rahasia!)
+#############################################
 .env
+*.env.local
+*.env.development.local
+*.env.production.local
+*.env.test.local
+*.env.staging.local
+*.env.*
+# Kamu boleh commit contoh env:
+#  -> buat manual ecommerce-backend/.env.example
+#  -> buat manual ecommerce-frontend/.env.example
 
-# Editor/IDE
-# .idea/
-# .vscode/
+#############################################
+# Logs
+#############################################
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+#############################################
+# Node / Next.js build artifacts
+#############################################
+**/node_modules/
+**/.next/
+**/.nuxt/
+**/.turbo/
+**/.vercel/
+**/out/
+**/build/
+**/dist/
+**/.eslintcache
+**/.stylelintcache
+**/*.tsbuildinfo
+
+#############################################
+# Storybook / coverage / testing
+#############################################
+**/coverage/
+**/.nyc_output/
+**/storybook-static/
+
+#############################################
+# Go build artifacts
+#############################################
+**/bin/
+**/build/
+**/dist/
+**/*.exe
+**/*.exe~
+**/*.dll
+**/*.so
+**/*.dylib
+**/*.test
+**/*.out
+
+# Go vendor (optional—hapus kalau mau commit vendor/)
+**/vendor/
+
+#############################################
+# Runtime upload dirs (jangan commit file hasil upload user)
+#############################################
+ecommerce-backend/uploads/
+ecommerce-frontend/public/uploads/
+
+#############################################
+# Database / temp data / docker volumes (local only)
+#############################################
+*.sqlite
+*.sqlite3
+*.db
+tmp/
+docker-data/
+local-data/
+
+#############################################
+# Keep product demo images (penting!)
+#############################################
+# Kita TIDAK ignore seluruh public/ supaya gambar contoh ikut ke repo.
+# Tambahan: pastikan folder public/images berisi gambar yang memang mau di-track.
+# Kalau kamu pernah ignore public/ di atas, hapus pola itu.
+
+# safety: pastikan images tracked (negate rules di atas jika perlu)
+!ecommerce-frontend/public/images/
+!ecommerce-frontend/public/images/**
